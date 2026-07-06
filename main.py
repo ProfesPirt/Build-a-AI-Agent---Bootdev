@@ -2,7 +2,7 @@ import os
 import argparse
 from dotenv import load_dotenv
 from openai import OpenAI
-
+from prompts import system_prompt
 
 
 def generate_content(client, messages):
@@ -27,6 +27,7 @@ def main():
         api_key=api_key,
     )
     messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": args.user_prompt},
     ]
     chat_completed = generate_content(client, messages)
