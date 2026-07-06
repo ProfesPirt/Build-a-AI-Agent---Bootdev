@@ -22,9 +22,22 @@ def get_files_info(working_directory: str, directory: str = ".")-> str:
             return_string += f"\n  - {files_in_directory[i]}: file_size={os.path.getsize(os.path.join(target_dir ,files_in_directory[i]))} bytes, is_dir={os.path.isdir(os.path.join(target_dir , files_in_directory[i]))}"
 
         return return_string
-
-
-
-    
     except Exception as error:
         return f"Error: {str(error)}"
+    
+schema_get_files_info = {
+    "type": "function",
+    "function": {
+        "name": "get_files_info",
+        "description": "List files in a specififed directory relative to the working directory, providing file size and directory status",
+        "parameters": {
+            "type": "object",
+            "properties":{
+                "directory":{
+                    "type": "string",
+                    "description": "Directory path to list files from, relative to working directory (default is the working directory itself)"
+                },
+            },
+        },
+    },
+}

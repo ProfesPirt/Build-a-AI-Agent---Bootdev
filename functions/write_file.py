@@ -13,3 +13,22 @@ def write_file(working_directory: str, file_path: str, content: str):
     with open(target_file,"w") as f:
         f.write(content)
     return f'Successfully wrote to "{file_path}" ({len(content)} characters written)'
+
+schema_write_file = {
+    "type": "function",
+    "function":{
+        "name": "write_file",
+        "description": "Writes content to a file relative to the working directory",
+        "parameters":{
+            "type": "object",
+            "file_path":{
+                "type": "string",
+                "description": "File path used to choose a file to write to, it is relative to the working directory"
+            },
+            "content":{
+                "type": "string",
+                "description": "The content you wish to overwrite the file with"
+            },
+        },
+    },
+}
